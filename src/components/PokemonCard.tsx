@@ -8,20 +8,25 @@ const pokemonList = [
     name: "mew",
   },
 ];
-
-const PokemonCard = () => {
-  const pokemon = pokemonList[1];
-
+function PokemonCard({ pokemon }: { pokemon: { name: string; imgSrc?: string } }) {
   return (
     <figure>
       {pokemon.imgSrc ? (
         <img src={pokemon.imgSrc} alt={pokemon.name} />
       ) : (
-        <p>Pokemon de type plante</p>
+        <p>Un Pokemon adorable</p>
       )}
       <figcaption>{pokemon.name}</figcaption>
     </figure>
   );
-};
-
-export default PokemonCard;
+}
+function PokemonList() {
+  return (
+    <div>
+      {pokemonList.map((pokemon) => (
+        <PokemonCard key={pokemon.name} pokemon={pokemon} />
+      ))}
+    </div>
+  );
+}
+export default PokemonList;
